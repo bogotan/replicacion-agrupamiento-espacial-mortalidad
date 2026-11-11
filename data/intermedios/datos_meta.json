@@ -1,0 +1,53 @@
+{
+ "perdidas": {
+  "2018": {
+   "total": 236932,
+   "sin_mun": 1899,
+   "sin_edad": 1,
+   "san_andres": 271
+  },
+  "2019": {
+   "total": 244355,
+   "sin_mun": 2379,
+   "sin_edad": 0,
+   "san_andres": 271
+  },
+  "2020": {
+   "total": 300853,
+   "sin_mun": 1650,
+   "sin_edad": 1,
+   "san_andres": 344
+  },
+  "2021": {
+   "total": 363089,
+   "sin_mun": 1932,
+   "sin_edad": 0,
+   "san_andres": 444
+  },
+  "2022": {
+   "total": 287251,
+   "sin_mun": 4300,
+   "sin_edad": 0,
+   "san_andres": 330
+  },
+  "2023": {
+   "total": 268411,
+   "sin_mun": 6663,
+   "sin_edad": 0,
+   "san_andres": 342
+  },
+  "2024": {
+   "total": 275778,
+   "sin_mun": 4587,
+   "sin_edad": 1,
+   "san_andres": 302
+  },
+  "2025": {
+   "total": 284254,
+   "sin_mun": 2997,
+   "sin_edad": 0,
+   "san_andres": 355
+  }
+ },
+ "n_mun": 1120
+}

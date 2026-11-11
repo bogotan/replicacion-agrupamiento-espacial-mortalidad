@@ -1,0 +1,52 @@
+# Fuentes del artículo A3
+
+Consultadas entre el 24 y el 25 de octubre de 2026. Para cada fuente: qué se abrió y qué se verificó en ella. Los metadatos bibliográficos (volumen, número, páginas, DOI) se cotejaron con la API de Crossref (`api.crossref.org/works/<DOI>`) el 24 de octubre de 2026.
+
+## Datos
+
+| Fuente | URL | Qué se verificó |
+|---|---|---|
+| DANE, microdatos de defunciones no fetales 2018–2025 (base extendida del paquete común, `data/processed/ext/def_<año>.parquet`) | https://microdatos.dane.gov.co/index.php/catalog/EEVV | Municipio de residencia, grupo de edad, causa 6/67. Total 2.260.923 defunciones; 26.407 sin municipio; 2.659 de San Andrés y Providencia; 3 sin edad (`data/intermedios/datos_meta.json`). |
+| DANE, proyecciones municipales de población por edad simple post-CNPV 2018 (`data/processed/mun_pob_edad.parquet`) | https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/proyecciones-de-poblacion | Años 2018–2025, edades 0 a 85+, áreas cabecera y centros poblados y rural disperso. Riosucio (27615) cae a la mitad en 2024 por la segregación de Nuevo Belén de Bajirá (27493). |
+| DANE, MGN 2018 integrado con el CNPV 2018, nivel municipio (servicio ArcGIS `MGN2018/Serv_CapaMunicipiosInt_2018`) | https://portalgis.dane.gov.co/mparcgis/rest/services/MGN2018/Serv_CapaMunicipiosInt_2018/MapServer/0 | 1.122 polígonos; campos `STP19_INT1/2` (viviendas con y sin internet), `STP51_*` (nivel educativo), `AREA`. El servidor no publica robots.txt (respuesta 404). |
+| DANE (2020), instructivo del MGN integrado al CNPV 2018 | https://microdatos.dane.gov.co/index.php/catalog/643/download/14036 | Tabla 2 (nivel municipio): definición de `STP19_INT1` («conteo de viviendas con servicio de internet»), `STP51_SUPE`, `STP51_POST`, `STP51_13_E` («ninguno»), `STP27_PERS`. Las variables son anonimizadas; la suma de `STP51_*` cubre cerca de la mitad de las personas, por eso se usa como proporción. |
+| DANE (2019), presentaciones de resultados del CNPV 2018 sobre grupos étnicos (población indígena; población negra, afrocolombiana, raizal y palenquera) | https://www.dane.gov.co/files/investigaciones/boletines/grupos-etnicos/presentacion-grupos-etnicos-2019.pdf y https://www.dane.gov.co/files/investigaciones/boletines/grupos-etnicos/presentacion-grupos-etnicos-poblacion-NARP-2019.pdf (consultadas el 30 de octubre de 2026) | 1.905.617 personas indígenas y 2.950.072 negras, mulatas, afrodescendientes o afrocolombianas: iguales a la suma municipal de `etnia2018_mpio.json` (`pruebas/test_insumos.py`). |
+| DANE, cuadro 5 de defunciones no fetales 2018 (cifras definitivas) | https://www.dane.gov.co/files/investigaciones/poblacion/2019/20-diciembre-2019/nofetales2018p/CUADRO5-NOFETALES-2018-def.xls (30 de octubre de 2026) | Publica las defunciones por municipio de residencia, causa 6/67, edad y sexo; los observados de 2018 coinciden salvo una defunción sin edad. |
+| DANE, NBI 2018 municipal (`INDICADORES_COND_DE_VIDA/Serv_Mpios_NBI_PropPersonasEnNBI_Total_2018`) | enlazado desde datos.gov.co (conjunto `tupr-xx6r` y afines) | Campo `NBIC_Total_Prop_de_Personas_en_NBIPorc`, 1.122 municipios. |
+| DANE, IPM 2018 municipal (`Serv_Mpios_IndPobrezaMultidimensional_2018`) | ídem | Campo `IPM`; correlación con NBI de 0,86 (se usa solo NBI en los modelos). |
+| DANE, población indígena y afrocolombiana 2018 (`INDICADORES_GRUPOS_ETNICOS/Serv_Mpios_PoblacionIndigena_2018`) | ídem (datos.gov.co `4wkg-s9hu` y afines) | Campos `PARTICIPACION_PORCENTUAL_PA1_GRP_ETNIC_1` y `_5`; celdas vacías con total de unidades vacío = sin personas del grupo. |
+| MinSalud, REPS, «Relación de IPS públicas y privadas según el nivel de atención y capacidad instalada» | https://www.datos.gov.co/resource/s2ru-bqt6.csv | 41.427 filas; «Fecha corte REPS: Nov 5 2022»; camas totales y de cuidado intensivo por sede. 93 municipios con camas de cuidado intensivo. |
+| DIVIPOLA con coordenadas y catálogo de estaciones del IDEAM (estudio 52) | datos.gov.co `gdxc-w37w`, `hp9r-jxuu` | Puntos de referencia municipales; altitud de la estación más cercana (mediana de distancia 0,8 km). |
+| PDET, Decreto Ley 893 de 2017 (`config/clasificacion_municipal.csv`) | datos.gov.co `idrk-ba8y` | 170 municipios. |
+| Estudio 55, indicadores municipales de calidad del registro y completitud del DANE | `output/estudios/55_calidad_dato_defunciones/` | Muertes sin asistencia, códigos basura (Naghavi et al., 2010), muertes en casa, completitud de todas las edades 2015–2017. |
+| Cuadernos de Economía, pautas para autores (concepto de revisión inicial) | https://revistas.unal.edu.co/index.php/ceconomia/libraryFiles/downloadPublic/1127 y https://revistas.unal.edu.co/index.php/ceconomia/about | Título de 20 palabras o menos; resumen de 100 palabras o menos; 5 palabras clave en orden alfabético; 3 códigos JEL; 4.000 a 10.000 palabras con referencias, notas y tablas; figuras en escala de grises; APA 7 con DOI; documento anónimo; numeración 1, 1.1. |
+| Ensayos sobre Política Económica (Banco de la República) | https://banrep.gov.co/es/publicaciones-investigaciones/espe/sobre-revista | Desde 2018 publica números temáticos orientados a política; no se encontraron pautas de envío abierto. Por eso se eligió Cuadernos de Economía. |
+
+## Literatura
+
+| Referencia | Qué se abrió | Qué se verificó |
+|---|---|---|
+| Anselin (2018), GeoDa Workbook, «Maps for rates or proportions» | https://geodacenter.github.io/workbook/3b_rates/lab3b.html | Fórmula del suavizado de Bayes empírico global (peso $w_i = \sigma^2/(\sigma^2 + \mu/P_i)$, estimadores de momentos, truncamiento en cero). |
+| Anselin (2019), GeoDa Workbook, «Global spatial autocorrelation (2)» | https://geodacenter.github.io/workbook/5b_global_adv/lab5b.html | Índice de Assunção y Reis (1999): estandarización de cada tasa por su varianza antes de la I de Moran. |
+| Besag, York y Mollié (1991) | PDF del Institute of Statistical Mathematics: https://www.ism.ac.jp/editsec/aism/pdf/043_1_0001.pdf | Modelo de log riesgo relativo con componentes estructurado y no estructurado; aplicación a los 94 departamentos de Francia. |
+| Bivand y Bernat, documentación de `lm.RStests` (spdep) | https://rdrr.io/cran/spdep/man/lm.RStests.html | Definición de las pruebas LM (score) de error y de rezago y de sus variantes ajustadas por la presencia de la otra. |
+| Colella, Lalive, Sakalli y Thoenig (2019) | https://docs.iza.org/dp12584.pdf | Errores estándar con correlación espacial a menos de un corte de distancia (Conley) y núcleo de Bartlett. |
+| Gibbons y Overman (2012) | Versión de trabajo: https://personal.lse.ac.uk/gibbons/Papers/Mostly%20Pointless%20Spatial%20Econometrics.pdf | En la forma reducida, SDM y SLX solo se distinguen por restricciones entre coeficientes; identificación débil. |
+| Kelejian y Prucha (2010) | https://www.econ.umd.edu/sites/www.econ.umd.edu/files/pubs/JE157%282010%29.pdf | Estimador de momentos generalizados con heteroscedasticidad de forma desconocida. |
+| Kodaman et al. (2014) | Resumen en https://digitalcommons.dartmouth.edu/facoa/1601 (el PDF no se pudo descargar) | Dos poblaciones colombianas, montaña de alto riesgo y costa de bajo riesgo, con infección por *H. pylori* parecida; la interacción de ascendencias del huésped y de la bacteria explica la diferencia en lesiones. |
+| LeSage (2014) | PDF: https://rrs.scholasticahq.com/article/8081.pdf | Principios 1 (derrames locales frente a globales), 2 (SDEM o SDM bastan), 3 (efectos directos e indirectos como resúmenes de derivadas parciales) y 5 (la matriz de pesos importa menos de lo que se cree si se interpretan bien los efectos). |
+| Naghavi et al. (2010); Phillips et al. (2014) | Textos en `data/raw/externos/55_calidad_dato_defunciones/` del repositorio | Tipología de códigos basura; I10 e I15 son de tipo 1. Componentes del índice de desempeño de las estadísticas vitales. |
+| Rey, Arribas-Bel y Wolf (2020) | https://geographicdata.science/book/notebooks/11_regression.html | Capítulo de regresión espacial con `spreg` (SLX, error y rezago espaciales, regímenes). |
+| Riebler et al. (2016) | https://arxiv.org/abs/1601.01180 | Sección 3.1.3: modelo de Leroux, precisión $\tau[(1-\varphi)I + \varphi Q]$, de la sobredispersión pura ($\varphi = 0$) al modelo de Besag ($\varphi = 1$). |
+| Sánchez, Díaz y Formisano (2003) | Registro y resumen en https://ideas.repec.org/p/col/000118/002185.html (RePEc escribe «Fornisano»; el PDF del DNP no abrió por un certificado inválido) | Persistencia y difusión espacial de homicidios y otros delitos; papel de los grupos armados ilegales. |
+| Spijker, Recaño, Martínez y Carioli (2021) | Resumen y página de la editorial: https://link.springer.com/article/10.1007/s10109-020-00335-1 (texto completo de pago) | Municipios, 1998–2014, siete grupos de causas, Moran local y global, modelos de rezago y de Durbin espacial; causas externas las más agrupadas; superficie, etnia y gasto público como determinantes frecuentes. |
+| Garavito Jiménez (2026a) | Documento de trabajo «Dónde el riesgo se agrupa» (versión 2.0) y su script de la figura 3; resultado en `config/seleccion_causas_departamental.csv` | 61 causas estables, 27 con p < 0,05 y 12 con q < 0,05 (9.999 permutaciones); I departamental 2022 de malformaciones (0,37) y otras afecciones perinatales (0,31). |
+| Garavito Jiménez (2026b), estudio 55 | Nota técnica del estudio 55 del Termómetro de las Estadísticas Vitales; cifras citadas en `config/cifras_citadas.csv` | 54,8 % certificadas por médico no tratante; 17,0 % de muertes por enfermedad sin asistencia (32,9 % en Nariño); códigos basura 11,3 % (2023–2025). |
+
+## Revisión de árbitro (29 de octubre de 2026)
+
+No se añadieron fuentes externas. El escalado del componente ICAR del BYM2 sigue la sección 3 de Riebler et al. (2016) (media geométrica de las varianzas marginales igual a 1). El indicador de códigos basura sin I10–I15 se recalculó desde la base extendida con la tipología de Naghavi et al. (2010) ya transcrita en `config/codigos_basura_naghavi2010.csv`; su versión con todas las causas reproduce la del estudio 55 (correlación 1,0).
+
+## Referencias que no se citan porque no se pudieron abrir
+
+Anselin (1988), *Spatial econometrics: Methods and models*; Anselin, Bera, Florax y Yoon (1996); Conley (1999); Elhorst (2010); Halleck Vega y Elhorst (2015); LeSage y Pace (2009); Marshall (1991); Leroux, Lei y Breslow (2000). Sus contenidos se usan a través de las fuentes abiertas de la tabla anterior, que los describen.

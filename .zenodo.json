@@ -1,0 +1,23 @@
+{
+  "title": "¿Cuánto del agrupamiento espacial de la mortalidad por causa en Colombia explican los determinantes y la calidad del registro? (código y datos de replicación)",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Garavito Jiménez, Daniel A.",
+      "affiliation": "Sinergística S.A.S.",
+      "orcid": "0009-0009-6871-5807"
+    }
+  ],
+  "description": "Repositorio de replicación del artículo enviado a Cuadernos de Economía: código (MIT), agregados intermedios y salidas que reproducen cada cifra del texto. Texto, tablas, figuras y datos derivados bajo CC BY-NC 4.0; documentación de método bajo CC BY 4.0 (ver LICENSE-datos.md). Los microdatos del DANE no se redistribuyen; el repositorio trae el código para descargarlos y procesarlos. En la preparación se usó Claude (Anthropic) como asistente de código y redacción, bajo la dirección y revisión del autor.",
+  "license": "MIT",
+  "language": "spa",
+  "keywords": [
+    "autocorrelación espacial",
+    "calidad del registro",
+    "econometría espacial",
+    "mortalidad por causa",
+    "estadísticas vitales",
+    "Colombia"
+  ],
+  "access_right": "open"
+}

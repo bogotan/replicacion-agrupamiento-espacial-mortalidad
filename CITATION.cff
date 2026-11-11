@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "Si usa este código o estos datos, cite el artículo y el repositorio."
+title: "¿Cuánto del agrupamiento espacial de la mortalidad por causa en Colombia explican los determinantes y la calidad del registro? (código y datos de replicación)"
+authors:
+  - family-names: "Garavito Jiménez"
+    given-names: "Daniel A."
+    affiliation: "Sinergística S.A.S., Bogotá, Colombia"
+    orcid: "https://orcid.org/0009-0009-6871-5807"
+    email: "dagaravitoj@gmail.com"
+date-released: 2026-10-30
+version: "2.0.0"
+license: MIT
+repository-code: "https://github.com/bogotan/replicacion-agrupamiento-espacial-mortalidad"
+keywords:
+  - autocorrelación espacial
+  - calidad del registro
+  - econometría espacial
+  - mortalidad por causa
+  - estadísticas vitales
+  - Colombia
+preferred-citation:
+  type: article
+  title: "¿Cuánto del agrupamiento espacial de la mortalidad por causa en Colombia explican los determinantes y la calidad del registro?"
+  authors:
+    - family-names: "Garavito Jiménez"
+      given-names: "Daniel A."
+  journal: "Cuadernos de Economía (manuscrito enviado)"
+  year: 2026
